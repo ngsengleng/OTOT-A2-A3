@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: mynginx_image1:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: 40m
+              memory: 100Mi
+# kindest/node         <none>    d8644f660df0   3 days ago    898MB
+# otot-a1_nginx        latest    37b87e34b65d   5 weeks ago   142MB
+# mynginx_image1       latest    51dc7080f5b7   5 weeks ago   142MB
+# testing              latest    7c193e1e44d3   5 weeks ago   918MB
+# otot-a1_nodeserver   latest    7c193e1e44d3   5 weeks ago   918MB
